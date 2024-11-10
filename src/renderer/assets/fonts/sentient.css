@@ -1,0 +1,38 @@
+/**
+* @license
+*
+* Font Family: Sentient
+* Designed by: Noopur Choksi
+* URL: https://www.fontshare.com/fonts/sentient
+* © 2024 Indian Type Foundry
+*
+* Sentient Extralight
+* Sentient ExtralightItalic
+* Sentient Light
+* Sentient LightItalic
+* Sentient Regular
+* Sentient Italic
+* Sentient Medium
+* Sentient MediumItalic
+* Sentient Bold
+* Sentient BoldItalic
+* Sentient Variable (Variable font)
+* Sentient VariableItalic (Variable font)
+
+*
+*/
+/**
+* This is a variable font
+* You can control variable axes as shown below:
+* font-variation-settings: wght 700.0wght 400.0;
+*
+* available axes:
+'wght' (range from 200.0 to 700.0'wght' (range from 200.0 to 700.0
+*/
+@font-face {
+  font-family: 'Sentient-Variable';
+  src: url('../fonts/Sentient-Variable.woff2') format('woff2');
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
+}
