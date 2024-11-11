@@ -40,7 +40,6 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
 
     const handleScroll = (e: React.WheelEvent<HTMLDivElement>): void => {
       const newValue = e.deltaY > 0 ? (value as number) - 1 : (value as number) + 1
-      console.log(newValue)
       if (newValue >= min) {
         onChange(newValue)
       }
@@ -49,7 +48,6 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
     const handleButton = (amount: number): void => {
       onChange((value as number) + amount)
       if (typeof ref !== 'function' && ref?.current) {
-        console.log('hi')
         ref.current.focus()
       }
     }

@@ -1,16 +1,22 @@
 import { useState } from 'react'
 import { NavLink as NavLinkRoot } from 'react-router-dom'
-import { ArrowLeft, Home, type LucideIcon } from 'lucide-react'
+import { ArrowLeft, SearchCode, TextSearch, type LucideIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { cn } from '@/utils/tw'
 
 const routes: Array<{ label: string; route: string; Icon: LucideIcon; hoverClassName: string }> = [
   {
-    label: 'Home',
-    route: '/home',
-    Icon: Home,
-    hoverClassName: 'hover:w-28'
+    label: 'Search Parameters',
+    route: '/form',
+    Icon: SearchCode,
+    hoverClassName: 'hover:w-52'
+  },
+  {
+    label: 'Results',
+    route: '/results',
+    Icon: TextSearch,
+    hoverClassName: 'hover:w-32'
   }
 ]
 
@@ -21,7 +27,7 @@ const Navbar = (): JSX.Element => {
     <nav
       className={cn(
         'h-full w-52 flex flex-col p-1 gap-1 items-start border-r bg-muted/40 transition-all ease-out duration-300',
-        isSmall && 'w-14'
+        isSmall && 'w-14 w-'
       )}
     >
       {routes.map((route) => (

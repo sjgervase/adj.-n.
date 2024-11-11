@@ -1,6 +1,7 @@
 import { Navigate, type RouteObject } from 'react-router-dom'
 import Container from './Container'
-import Home from '../Containers/Home/Home'
+import ParametersForm from '../Containers/ParametersForm'
+import Results from '../Containers/Results/Results'
 
 export const routeConfig: RouteObject[] = [
   {
@@ -8,12 +9,16 @@ export const routeConfig: RouteObject[] = [
     element: <Container />,
     children: [
       {
-        path: '/home',
-        element: <Home />
+        path: '/form',
+        element: <ParametersForm />
+      },
+      {
+        path: '/results',
+        element: <Results />
       },
       {
         path: '',
-        element: <Navigate to="/home" replace />
+        element: <Navigate to="/form" replace />
       }
     ]
   }

@@ -18,7 +18,7 @@ const Container = (): JSX.Element => {
             header={header}
             headingClassName="font-sentient flex items-center pt-6 pb-5 text-4xl font-semibold leading-none transition-all ease-out"
             headingScrollClassName="text-2xl pt-3 pb-2.5"
-            viewportClassName="bg-muted/40 border rounded-lg p-4"
+            viewportClassName="bg-muted border rounded-lg p-4"
           >
             <Outlet />
           </ScrollAreaWithHeading>
@@ -33,7 +33,8 @@ const useContainerHeader = (): string => {
   const location = useLocation().pathname
 
   const pathnameMap = {
-    '/home': 'Home'
+    '/form': 'Search Parameters',
+    '/results': 'Results'
   }
 
   return location in pathnameMap ? pathnameMap[location] : 'Unknown Path'

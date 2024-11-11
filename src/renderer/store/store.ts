@@ -1,15 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
-import genericReducer from './genericSlice'
+import searchParametersReducer from './searchParametersSlice'
 
 const store = configureStore({
   reducer: {
-    generic: genericReducer
+    searchParameters: searchParametersReducer
   }
 })
 
 export default store
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+// Infer the "StoreRootState" and "AppDispatch" types from the store itself
+export type StoreRootState = ReturnType<typeof store.getState>
+export type AppStore = typeof store
 export type AppDispatch = typeof store.dispatch
