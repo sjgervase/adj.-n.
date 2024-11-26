@@ -12,11 +12,11 @@ type SearchParametersShape = {
 }
 
 const initialState: SearchParametersShape = {
-  // charCount: 9,
-  // letters: ['', '', '', '', '', '', '', '', ''],
+  charCount: 9,
+  letters: ['', '', '', '', '', '', '', '', ''],
   // For testing:
-  charCount: 14,
-  letters: ['F', '', '', '', '', '', '', '', 'A', '', '', '', '', ''],
+  // charCount: 14,
+  // letters: ['F', '', '', '', '', '', '', '', 'A', '', '', '', '', ''],
   includeNouns: true,
   includeCompoundNouns: false,
   includeHypenatedNouns: false,

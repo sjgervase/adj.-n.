@@ -136,9 +136,7 @@ const ParametersForm = (): JSX.Element => {
           )}
         />
 
-        {/*  */}
-
-        <div className="relative">
+        <div className="relative text-center">
           <Label>Enter the letters you need to search around</Label>
           <div className="mt-1 flex gap-3 w-full items-center justify-center bg-muted relative z-10">
             {transitions((style, index) => (
@@ -183,8 +181,6 @@ const ParametersForm = (): JSX.Element => {
             </animated.div>
           ))}
         </div>
-
-        {/*  */}
 
         <Card className="w-fit mx-auto">
           <CardHeader>

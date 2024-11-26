@@ -43,7 +43,7 @@ const Results = (): JSX.Element => {
     includeCompoundAdjectives
   } = useAppSelector(selectSearchParameters)
 
-  const getResults = letters.filter(Boolean).length > 0
+  const showResults = letters.filter(Boolean).length > 0
 
   // states
   const [selectedNoun, setSelectedNoun] = useState<WordState>({
@@ -63,7 +63,7 @@ const Results = (): JSX.Element => {
 
   const { matchedNouns, matchedAdjectives } = useMemo(() => {
     // dont fetch
-    if (!getResults) return { matchedNouns: [], matchedAdjectives: [] }
+    if (!showResults) return { matchedNouns: [], matchedAdjectives: [] }
 
     // generate regex by letter size
     const regex = new RegExp(
@@ -117,7 +117,7 @@ const Results = (): JSX.Element => {
   }, [
     charCount,
     letters,
-    getResults,
+    showResults,
     includeNouns,
     includeCompoundNouns,
     includeHypenatedNouns,
@@ -150,8 +150,8 @@ const Results = (): JSX.Element => {
     })
   }
 
-  return !getResults ? (
-    <div className="flex h-[calc(100vh-11rem)] items-center justify-center">
+  return !showResults ? (
+    <div className="flex h-[calc(100vh-9rem)] items-center justify-center">
       <div className="flex items-center gap-1.5 text-xl text-muted-foreground">
         <TriangleAlert />
         First, you must define{' '}
