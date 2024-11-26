@@ -16,7 +16,7 @@ const TitleBar = (): JSX.Element => {
         <Button size="icon" variant="ghost">
           <Square className="h-4 w-4" />
         </Button>
-        <Button size="icon" variant="ghost">
+        <Button size="icon" variant="ghost" onClick={() => {}}>
           <X className="h-4 w-4" />
         </Button>
       </div>

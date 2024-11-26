@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom'
 
 import { ScrollAreaWithHeading } from '@/components/ui/scroll-area'
-import TitleBar from './TitleBar'
+// import TitleBar from './TitleBar'
 import Navbar from './Navbar'
 
 const Container = (): JSX.Element => {
@@ -9,7 +9,7 @@ const Container = (): JSX.Element => {
 
   return (
     <section className="h-screen w-screen flex flex-col">
-      <TitleBar />
+      {/* <TitleBar /> */}
       <main className="h-full flex overflow-hidden">
         <Navbar />
         <div className="grow flex flex-col pr-2">

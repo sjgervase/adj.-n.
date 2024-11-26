@@ -24,7 +24,13 @@ function createWindow(): void {
     y,
     show: false,
     autoHideMenuBar: true,
-    titleBarStyle: 'hidden',
+
+    // remove the default titlebar
+    // https://github.com/WICG/window-controls-overlay/blob/main/explainer.md#javascript-apis
+    // titleBarStyle: 'hidden',
+    // expose window controlls in Windows/Linux
+    // ...(process.platform !== 'darwin' ? { titleBarOverlay: true } : {}),
+
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),

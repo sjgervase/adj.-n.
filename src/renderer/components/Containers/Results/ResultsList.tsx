@@ -1,32 +1,20 @@
 import { Button } from '@/components/ui/button'
 
 import { Heart, XIcon } from 'lucide-react'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle
-} from '@/components/ui/card'
-
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import { useMemo, useState } from 'react'
+import { cn } from '@/utils/tw'
 
 const ResultsList = ({
   matchedWords,
   selectedWord,
   setSelectedWord,
-  cardTitle,
-  cardDescription,
   requiredLength
 }: {
   matchedWords: string[]
   selectedWord: string | null
   setSelectedWord: (word: string | null) => void
-  cardTitle: string
-  cardDescription: string
   requiredLength: number | null
 }): JSX.Element | null => {
   // states to handle internal managements of liked and hidden words
@@ -45,15 +33,45 @@ const ResultsList = ({
     [matchedWords, hiddenWords, requiredLength]
   )
 
-  return matchedWords.length === 0 ? null : (
-    <Card className="basis-1/2 h-min">
-      <CardHeader>
-        <CardTitle>{cardTitle}</CardTitle>
-        <CardDescription>{cardDescription}</CardDescription>
-      </CardHeader>
+  const handleLike = (word: string): void => {
+    setLikedWords((prev) =>
+      prev.includes(word) ? prev.filter((w) => w !== word) : prev.concat(word)
+    )
+  }
 
-      <CardContent>
-        <ul className="flex flex-col gap-0.5 items-start bg-muted rounded-lg p-2">
+  const handleHide = (word: string): void => {
+    setHiddenWords((prev) => prev.concat(word))
+  }
+
+  return matchedWords.length === 0 ? null : (
+    <ul className="h-full flex flex-col gap-0.5 items-start">
+      {selectedWord && (
+        <>
+          <li className="uppercase tracking-wide text-xs font-medium mb-1">Selected</li>
+          <ResultListItem
+            word={selectedWord}
+            index={0}
+            selectedWord={selectedWord}
+            setSelectedWord={setSelectedWord}
+            isLikedWord={likedWords.includes(selectedWord)}
+            handleLikedWords={() => handleLike(selectedWord)}
+            handleHiddenWords={() => handleHide(selectedWord)}
+          />
+          <li className="h-[1px] w-full border-t mt-3" />
+        </>
+      )}
+
+      {likedWords.length > 0 && (
+        <>
+          <li
+            className={cn(
+              'uppercase tracking-wide text-xs font-medium flex justify-between w-full px-1 sticky -top-px bg-muted pb-1.5',
+              selectedWord ? 'pt-2.5' : 'pt-1'
+            )}
+          >
+            Favorited
+            <span>{likedWords.length}</span>
+          </li>
           {likedWords.map((word, i) => {
             const isLikedWord = likedWords.includes(word)
             return (
@@ -64,18 +82,26 @@ const ResultsList = ({
                 selectedWord={selectedWord}
                 setSelectedWord={setSelectedWord}
                 isLikedWord={isLikedWord}
-                handleLikedWords={() =>
-                  setLikedWords(
-                    isLikedWord ? likedWords.filter((w) => w !== word) : likedWords.concat(word)
-                  )
-                }
-                handleHiddenWords={() => setHiddenWords((prev) => prev.concat(word))}
+                handleLikedWords={() => handleLike(word)}
+                handleHiddenWords={() => handleHide(word)}
               />
             )
           })}
+          <li className="h-[1px] w-full border-t mt-3" />
+        </>
+      )}
 
-          {likedWords.length > 0 && <li className="h-[1px] w-full border-t my-3" />}
-
+      {filteredMatchedWords.length > 0 && (
+        <>
+          <li
+            className={cn(
+              'uppercase tracking-wide text-xs font-medium flex justify-between w-full px-1 sticky -top-px bg-muted pb-1.5',
+              likedWords.length > 0 ? 'pt-2.5' : 'pt-1'
+            )}
+          >
+            All Words
+            <span>{filteredMatchedWords.length}</span>
+          </li>
           {filteredMatchedWords.map((word, i) => {
             const isLikedWord = likedWords.includes(word)
             return (
@@ -86,22 +112,14 @@ const ResultsList = ({
                 selectedWord={selectedWord}
                 setSelectedWord={setSelectedWord}
                 isLikedWord={isLikedWord}
-                handleLikedWords={() =>
-                  setLikedWords(
-                    isLikedWord ? likedWords.filter((w) => w !== word) : likedWords.concat(word)
-                  )
-                }
-                handleHiddenWords={() => setHiddenWords((prev) => prev.concat(word))}
+                handleLikedWords={() => handleLike(word)}
+                handleHiddenWords={() => handleHide(word)}
               />
             )
           })}
-        </ul>
-      </CardContent>
-
-      <CardFooter>
-        <p>Card Footer</p>
-      </CardFooter>
-    </Card>
+        </>
+      )}
+    </ul>
   )
 }
 

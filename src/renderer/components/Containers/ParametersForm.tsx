@@ -186,7 +186,7 @@ const ParametersForm = (): JSX.Element => {
 
         {/*  */}
 
-        <Card>
+        <Card className="w-fit mx-auto">
           <CardHeader>
             <CardTitle>Additional Search Options</CardTitle>
             <CardDescription>
